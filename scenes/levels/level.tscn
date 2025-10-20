@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://doisnbaoy4tv3"]
+[gd_scene load_steps=4 format=3 uid="uid://doisnbaoy4tv3"]
 
 [ext_resource type="PackedScene" uid="uid://bfdc254re238a" path="res://scenes/player/player.tscn" id="1_377w7"]
 [ext_resource type="Script" uid="uid://il0tv64hq853" path="res://scenes/player/player.gd" id="2_bovvr"]
 
+[sub_resource type="GDScript" id="GDScript_bovvr"]
+script/source = "extends Button
+
+var player: Node2D
+
+func _ready():
+	player = $\"../Player\"
+
+func _pressed():
+	player.on_rotate.emit()
+"
+
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_377w7")]
-position = Vector2(570, 334)
+position = Vector2(579, 317)
 script = ExtResource("2_bovvr")
 
 [node name="Button" type="Button" parent="."]
@@ -15,5 +27,4 @@ offset_top = 328.0
 offset_right = 289.0
 offset_bottom = 412.0
 text = "rotate"
-
-[connection signal="pressed" from="Button" to="Player" method="rotateSprite"]
+script = SubResource("GDScript_bovvr")
