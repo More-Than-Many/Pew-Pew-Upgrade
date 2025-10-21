@@ -1,18 +1,19 @@
-extends Sprite2D
+extends CharacterBody2D
 
-signal on_rotate
+@export var speed = 200
+var mouse_position = null
 
-var timer: float = 0.0
-var test_scale: int = 1
-
-func _ready():
-	test_scale = 2
-	self.scale = Vector2(test_scale, test_scale)
-	on_rotate.connect(rotateSprite)
-
-func rotateSprite() -> void:
-	rotate(PI/2)
+func _process(_delta: float) -> void:
+	velocity = Vector2.ZERO
+	mouse_position = get_global_mouse_position()
 	
-func _process(delta: float) -> void:
-	pass
+	if Input.is_action_pressed("forward"):
+		var direction = (mouse_position - position)
+		if (direction.x * direction.x + direction.y * direction.y >= 10000):
+			print(direction)
+			velocity = direction.normalized() * speed
+
+		
+	move_and_slide()
+	look_at(mouse_position)
 	
