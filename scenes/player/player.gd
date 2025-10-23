@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var speed = 200
+@export_group("Player Movement Variables")
+@export var speed := 300
 var mouse_position = null
 
 func _process(_delta: float) -> void:
@@ -10,8 +11,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("forward"):
 		var direction = (mouse_position - position)
 		if (direction.x * direction.x + direction.y * direction.y >= 10000):
-			print(direction)
-			velocity = direction.normalized() * speed
+			var dir_vector = direction.normalized()
+			velocity = dir_vector * speed
 
 		
 	move_and_slide()

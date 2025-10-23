@@ -1,18 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfdc254re238a"]
+[gd_scene load_steps=5 format=3 uid="uid://bfdc254re238a"]
 
 [ext_resource type="Texture2D" uid="uid://b5vnpewbwhw2o" path="res://graphics/player/player.png" id="1_5pofk"]
 [ext_resource type="Script" uid="uid://cc83ph7pu8u15" path="res://scenes/player/player.gd" id="2_dovo2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
-size = Vector2(106, 107)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dovo2"]
+radius = 62.03225
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
+size = Vector2(80, 42)
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("2_dovo2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(35, 0)
 rotation = 1.5707964
 texture = ExtResource("1_5pofk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-41, -0.5)
-shape = SubResource("RectangleShape2D_8afob")
+shape = SubResource("CircleShape2D_dovo2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(89, 21)
+shape = SubResource("RectangleShape2D_dovo2")
